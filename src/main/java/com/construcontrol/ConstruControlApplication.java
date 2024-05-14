@@ -1,13 +1,13 @@
-package com.contrucontrol.contrucontrol;
+package com.construcontrol;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ContrucontrolApplication {
+public class ConstruControlApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ContrucontrolApplication.class, args);
+		SpringApplication.run(ConstruControlApplication.class, args);
 	}
 
 }
