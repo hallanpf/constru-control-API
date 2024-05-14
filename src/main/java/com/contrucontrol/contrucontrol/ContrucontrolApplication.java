@@ -1,4 +1,4 @@
-package com.contrucontrol.construcontrol;
+package com.contrucontrol.contrucontrol;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
