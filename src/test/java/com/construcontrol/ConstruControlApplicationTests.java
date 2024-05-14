@@ -1,14 +1,17 @@
 package com.construcontrol;
 
-import org.junit.jupiter.api.Test;
+import com.construcontrol.construcontrol.ConstruControlApplication;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.junit.jupiter.api.Test;
 
-@SpringBootTest
-class ConstruControlApplicationTests {
+@SpringBootTest(classes = ConstruControlApplication.class)
+public class ConstruControlApplicationTests {
 
 	@Test
 	void contextLoads() {
-
+		// Seus testes aqui
 	}
 
 }
