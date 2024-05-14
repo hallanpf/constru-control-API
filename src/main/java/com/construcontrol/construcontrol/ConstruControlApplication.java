@@ -4,10 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ConstrucontrolApplication {
+public class ConstruControlApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ConstrucontrolApplication.class, args);
+		SpringApplication.run(ConstruControlApplication.class, args);
+
 	}
 
 }
