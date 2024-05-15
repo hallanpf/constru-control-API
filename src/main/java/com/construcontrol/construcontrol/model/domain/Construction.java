@@ -5,16 +5,16 @@ import lombok.*;
 
 import java.util.Date;
 
-@GetterS
+@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id")
 @Entity
 @Table(name = "constructions")
 public class Construction {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY);
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "construction")
     protected String company;
