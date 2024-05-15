@@ -1,5 +1,8 @@
 package com.construcontrol.construcontrol.model.domain;
 
+import com.construcontrol.construcontrol.DTO.AddressDTO;
+import com.construcontrol.construcontrol.DTO.ClientsDTO;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,21 +12,40 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id", callSuper = false)
+@EqualsAndHashCode(of = "id")
 @Table(name = "clientes_cpf")
 public class Clients extends User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "cpf", unique = true, nullable = false)
+    @Column(name = "cpf", unique = true, nullable = false, length = 11)
     private String cpf;
-    @Column(name = "rg", unique = true, nullable = false)
+    @Column(name = "rg", unique = true, nullable = false, length = 9)
     private String rg;
-    @Column(name = "matrial_status", nullable = false)
-    private MaritialStatus maritialStatus;
+   @Enumerated(EnumType.STRING)
+    private MaritialStatus maritalStatus;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
+    public Clients(ClientsDTO clientsDTO) {
+        this.name = clientsDTO.name();
+        this.phone = clientsDTO.phone();
+        this.email = clientsDTO.email();
+        this.cpf = clientsDTO.cpf();
+        this.rg = clientsDTO.rg();
+        this.maritalStatus = MaritialStatus.valueOf(clientsDTO.maritalStatus());
+        super.setUserType(UserType.CLIENTE);
+        this.address = createAddress(clientsDTO.address());
 
-}
+
+
+    }
+    private Address createAddress(AddressDTO addressDTO) {
+        if (addressDTO != null) {
+            return new Address(addressDTO);
+        } else {
+            return null;
+        }
+    }
+
+
+    }
+

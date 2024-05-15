@@ -1,5 +1,6 @@
 package com.construcontrol.construcontrol.model.domain;
 
+import com.construcontrol.construcontrol.DTO.AddressDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,5 +25,13 @@ public class Address {
     private String city;
     @Column(name = "state", nullable = false)
     private String state;
+
+    public Address (AddressDTO addressDTO){
+        this.zipCode = addressDTO.zipCode();
+        this.streetAddress = addressDTO.streetAddress();
+        this.neighborhood = addressDTO.neighborhood();
+        this.city = addressDTO.city();
+        this.state = addressDTO.state();
+    }
 
 }
