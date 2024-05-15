@@ -11,7 +11,6 @@ import jakarta.persistence.*;
 @Table(name = "companies")
 public class Company {
     @Id
-
     private long id;
     @Column(name = "company")
     protected String company;
