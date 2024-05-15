@@ -1,5 +1,7 @@
 package com.construcontrol.construcontrol.model.domain;
 
+import com.construcontrol.construcontrol.DTO.AddressDTO;
+import com.construcontrol.construcontrol.DTO.ManagerDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,4 +26,24 @@ public class Manager extends User {
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     
     private Address address;
+
+
+    public Manager(ManagerDTO ManagerDTO) {
+        this.name = ManagerDTO.name();
+        this.phone = ManagerDTO.phone();
+        this.email = ManagerDTO.email();
+        this.cpf = ManagerDTO.cpf();
+        this.rg = ManagerDTO.rg();
+        super.setUserType(UserType.GESTOR);
+        this.address = createAddress(ManagerDTO.address());
+
+    }
+    private Address createAddress(AddressDTO addressDTO) {
+        if (addressDTO != null) {
+            return new Address(addressDTO);
+        } else {
+            return null;
+        }
+    }
+
 }
