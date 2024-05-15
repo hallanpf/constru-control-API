@@ -20,20 +20,21 @@ public class Construction {
     protected String company;
     @Column(name = "cnpj")
     protected String cnpj;
-    @Column(name="start date")
+    @Column(name="start_date")
     protected Date startDate;
-    @Column(name="end date")
+    @Column(name="end_date")
     protected Date endDate;
     @Column(name = "buget")
     protected double budget;
-    @Column(name = "building land area")
+    @Column(name = "building_land_area")
     protected double buildingLandArea;
-    @Column(name = "building area")
+    @Column(name = "building_area")
     protected double buildingArea;
-    @Column(name = "sales area")
+    @Column(name = "sales_area")
     protected double salesArea;
-    @Column(name = "number of apartaments")
+    @Column(name = "number_apartaments")
     protected int numberApartaments;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 }
