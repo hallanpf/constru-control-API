@@ -11,12 +11,16 @@ import jakarta.persistence.*;
 @Table(name = "companies")
 public class Company {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "company")
-    protected String company;
+    private String company;
     @Column(name = "cnpj")
-    protected String cnpj;
+    private String cnpj;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "manager_id", referencedColumnName = "id")
+    private Manager manager;
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-      @OneToOne
     private Address address;
 }
