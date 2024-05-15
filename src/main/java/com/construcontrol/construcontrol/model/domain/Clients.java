@@ -3,14 +3,15 @@ package com.construcontrol.construcontrol.model.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+@SuppressWarnings("ALL")
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "id", callSuper = false)
 @Table(name = "clientes_cpf")
-public final class Clients extends User {
+public class Clients extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -21,7 +22,7 @@ public final class Clients extends User {
     @Column(name = "matrial_status", nullable = false)
     private MaritialStatus maritialStatus;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
 
 
