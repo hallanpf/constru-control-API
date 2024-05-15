@@ -2,7 +2,6 @@ package com.construcontrol.construcontrol.model.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Date;
 
 @Getter
@@ -17,7 +16,7 @@ public class Construction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "construction")
-    private String company;
+    private String construction;
     @Column(name = "cnpj")
     private String cnpj;
     @Column(name="start_date")
@@ -34,7 +33,7 @@ public class Construction {
     private double salesArea;
     @Column(name = "number_apartaments")
     private int numberApartaments;
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id", referencedColumnName = "id")
     private Company company;
     @OneToOne(cascade = CascadeType.ALL)
