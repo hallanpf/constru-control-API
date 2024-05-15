@@ -17,23 +17,26 @@ public class Construction {
     @GeneratedValue(strategy = GenerationType.IDENTITY);
     private long id;
     @Column(name = "construction")
-    protected String company;
+    private String company;
     @Column(name = "cnpj")
-    protected String cnpj;
+    private String cnpj;
     @Column(name="start_date")
-    protected Date startDate;
+    private Date startDate;
     @Column(name="end_date")
-    protected Date endDate;
+    private Date endDate;
     @Column(name = "buget")
-    protected double budget;
+    private double budget;
     @Column(name = "building_land_area")
-    protected double buildingLandArea;
+    private double buildingLandArea;
     @Column(name = "building_area")
-    protected double buildingArea;
+    private double buildingArea;
     @Column(name = "sales_area")
-    protected double salesArea;
+    private double salesArea;
     @Column(name = "number_apartaments")
-    protected int numberApartaments;
+    private int numberApartaments;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
+    private Company company;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
