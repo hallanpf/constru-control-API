@@ -23,6 +23,6 @@ public class User {
   protected String phone;
   @Column(unique = true, name = "email")
   protected String email;
-  @Enumerated(EnumType.STRING)
+  @Enumerated(EnumType.STRING)//
   private UserType userType;
 }
