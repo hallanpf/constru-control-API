@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
+@ToString
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,4 +21,6 @@ public class User {
   protected String phone;
   @Column(unique = true, name = "email")
   protected String email;
+  @Enumerated(EnumType.STRING)//
+  private UserType userType;
 }
