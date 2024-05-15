@@ -1,12 +1,11 @@
 package com.construcontrol.construcontrol.model.domain;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 @Getter
 @Setter
 @Entity
@@ -15,15 +14,15 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "zip_code")
+    @Column(name = "zip_code", nullable = false)
     private String zipCode;
-    @Column(name = "street_address")
+    @Column(name = "street_address", nullable = false)
     private String streetAddress;
-    @Column(name = "neighborhood")
+    @Column(name = "neighborhood", nullable = false)
     private String neighborhood;
-    @Column(name = "city")
+    @Column(name = "city", nullable = false)
     private String city;
-    @Column(name = "state")
+    @Column(name = "state", nullable = false)
     private String state;
 
 }
