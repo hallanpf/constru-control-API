@@ -10,5 +10,7 @@ public interface ManagerRepository extends JpaRepository<Manager, Long> {
     Manager getManagerById(long id);
     Optional<Manager> getManagerByCpf(String cpf);
 
+    Manager deleteManagerById(Long id);
+    Optional<Manager> deleteManagerByCpf(String cpf);
 
 }

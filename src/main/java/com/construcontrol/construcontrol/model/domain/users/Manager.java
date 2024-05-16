@@ -16,9 +16,6 @@ import lombok.*;
 
 public class Manager extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
     @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
     @Column(name = "rg", unique = true, nullable = false)
