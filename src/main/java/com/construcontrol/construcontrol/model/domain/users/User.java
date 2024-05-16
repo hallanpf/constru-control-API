@@ -24,4 +24,5 @@ public class User {
     protected String email;
     @Enumerated(EnumType.STRING)//
     private UserType userType;
+    // hello
 }
