@@ -40,4 +40,14 @@ public class ManagerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o gestor: " + e.getMessage());
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteManagerById(@PathVariable long id) {
+        try {
+            ManagerRepository.deleteById(id);
+            return ResponseEntity.ok("Gestor deletado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o gestor: " + e.getMessage());
+        }
+    }
 }
