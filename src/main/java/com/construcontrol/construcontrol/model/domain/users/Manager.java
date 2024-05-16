@@ -1,7 +1,9 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.users;
 
-import com.construcontrol.construcontrol.DTO.AddressDTO;
-import com.construcontrol.construcontrol.DTO.ManagerDTO;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
+import com.construcontrol.construcontrol.shared.AddressDTO;
+import com.construcontrol.construcontrol.DTO.users.ManagerDTO;
+import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,14 +19,12 @@ public class Manager extends User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
     @Column(name = "rg", unique = true, nullable = false)
     private String rg;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    
     private Address address;
 
 

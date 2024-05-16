@@ -1,6 +1,6 @@
-package com.construcontrol.construcontrol.controllers;
+package com.construcontrol.construcontrol.controllers.users;
 
-import com.construcontrol.construcontrol.repositories.UserRepository;
+import com.construcontrol.construcontrol.repositories.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

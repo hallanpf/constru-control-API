@@ -1,7 +1,7 @@
-package com.construcontrol.construcontrol.controllers;
+package com.construcontrol.construcontrol.controllers.projects;
 
-import com.construcontrol.construcontrol.DTO.ConstructionDTO;
-import com.construcontrol.construcontrol.model.domain.Construction;
+import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
+import com.construcontrol.construcontrol.model.domain.projects.Construction;
 import com.construcontrol.construcontrol.repositories.ConstructionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

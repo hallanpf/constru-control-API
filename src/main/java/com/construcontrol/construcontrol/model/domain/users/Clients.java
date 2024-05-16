@@ -1,8 +1,11 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.users;
 
-import com.construcontrol.construcontrol.DTO.AddressDTO;
-import com.construcontrol.construcontrol.DTO.ClientsDTO;
+import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
+import com.construcontrol.construcontrol.shared.AddressDTO;
+import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 
+import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 

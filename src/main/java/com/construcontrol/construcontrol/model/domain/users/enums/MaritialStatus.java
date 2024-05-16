@@ -1,4 +1,4 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.users.enums;
 
 public enum MaritialStatus {
     SOLTEIRO,

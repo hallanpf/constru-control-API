@@ -1,8 +1,10 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.projects;
 
-import com.construcontrol.construcontrol.DTO.CompanyDTO;
-import com.construcontrol.construcontrol.DTO.AddressDTO;
-import com.construcontrol.construcontrol.DTO.ManagerDTO;
+import com.construcontrol.construcontrol.DTO.projects.CompanyDTO;
+import com.construcontrol.construcontrol.shared.AddressDTO;
+import com.construcontrol.construcontrol.DTO.users.ManagerDTO;
+import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.model.domain.users.Manager;
 import jakarta.persistence.*;
 import lombok.*;
 

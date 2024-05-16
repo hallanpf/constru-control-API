@@ -1,9 +1,8 @@
-package com.construcontrol.construcontrol.controllers;
+package com.construcontrol.construcontrol.controllers.users;
 
-import com.construcontrol.construcontrol.DTO.ClientsDTO;
-import com.construcontrol.construcontrol.model.domain.Clients;
-import com.construcontrol.construcontrol.model.domain.MaritialStatus;
-import com.construcontrol.construcontrol.repositories.ClientRepository;
+import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
+import com.construcontrol.construcontrol.model.domain.users.Clients;
+import com.construcontrol.construcontrol.repositories.users.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,13 +29,12 @@ public class ClientController {
 
    @PostMapping
     public ResponseEntity createClient(@RequestBody @Validated ClientsDTO payload) {
-
-       Clients clients;
+        Clients clients;
        try {
            clients = new Clients(payload);
            clientReposirtory.save(clients);
            System.out.println(payload);
-           return ResponseEntity.ok().build();
+           return ResponseEntity.ok(payload);
        } catch (Exception e) {
            System.out.println(payload);
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());

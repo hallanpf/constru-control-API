@@ -1,6 +1,6 @@
-package com.construcontrol.construcontrol.repositories;
+package com.construcontrol.construcontrol.repositories.users;
 
-import com.construcontrol.construcontrol.model.domain.User;
+import com.construcontrol.construcontrol.model.domain.users.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

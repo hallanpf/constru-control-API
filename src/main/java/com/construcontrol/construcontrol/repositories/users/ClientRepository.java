@@ -1,9 +1,8 @@
-package com.construcontrol.construcontrol.repositories;
+package com.construcontrol.construcontrol.repositories.users;
 
-import com.construcontrol.construcontrol.model.domain.Clients;
+import com.construcontrol.construcontrol.model.domain.users.Clients;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public interface ClientRepository extends JpaRepository<Clients, Long> {

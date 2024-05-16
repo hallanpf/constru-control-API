@@ -1,5 +1,6 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.users;
 
+import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,6 +11,7 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @ToString
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Table(name = "users")
 public class User {
     @Id
