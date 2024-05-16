@@ -5,7 +5,6 @@ import com.construcontrol.construcontrol.DTO.CompanyDTO;
 import com.construcontrol.construcontrol.DTO.ConstructionDTO;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Date;
 
 @Getter
