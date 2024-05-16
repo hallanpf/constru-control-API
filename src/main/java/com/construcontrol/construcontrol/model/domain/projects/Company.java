@@ -21,7 +21,7 @@ public class Company {
     private long id;
     @Column(name = "company")
     private String company;
-    @Column(name = "cnpj")
+    @Column(name = "cnpj", unique = true, nullable = false, length = 14)
     private String cnpj;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "manager_id", referencedColumnName = "id")

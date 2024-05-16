@@ -37,9 +37,6 @@ public class Clients extends User {
         this.maritalStatus = MaritialStatus.valueOf(clientsDTO.maritalStatus());
         super.setUserType(UserType.CLIENTE);
         this.address = createAddress(clientsDTO.address());
-
-
-
     }
     private Address createAddress(AddressDTO addressDTO) {
         if (addressDTO != null) {
@@ -48,7 +45,4 @@ public class Clients extends User {
             return null;
         }
     }
-
-
-    }
-
+}
