@@ -15,7 +15,6 @@ import lombok.*;
 @Table(name = "manager")
 
 public class Manager extends User {
-
     @Column(name = "cpf", unique = true, nullable = false)
     private String cpf;
     @Column(name = "rg", unique = true, nullable = false)

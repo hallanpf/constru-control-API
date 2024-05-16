@@ -2,7 +2,9 @@ package com.construcontrol.construcontrol.controllers.users;
 
 import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 import com.construcontrol.construcontrol.model.domain.users.Clients;
+import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.repositories.users.ClientRepository;
+import com.construcontrol.construcontrol.shared.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,4 +42,14 @@ public class ClientController {
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());
        }
    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteClient(@PathVariable long id) {
+        try {
+            clientReposirtory.deleteById(id);
+            return ResponseEntity.ok("Cliente deletado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o cliente: " + e.getMessage());
+        }
+    }
 }
