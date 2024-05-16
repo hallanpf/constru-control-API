@@ -1,7 +1,11 @@
 package com.construcontrol.construcontrol.model.domain;
 
+import com.construcontrol.construcontrol.DTO.AddressDTO;
+import com.construcontrol.construcontrol.DTO.CompanyDTO;
+import com.construcontrol.construcontrol.DTO.ConstructionDTO;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.Date;
 
 @Getter
@@ -39,4 +43,35 @@ public class Construction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
+    public Construction(ConstructionDTO constructionDTO) {
+        this.construction = constructionDTO.construction();
+        this.cnpj = constructionDTO.cnpj();
+        this.startDate = constructionDTO.startDate();
+        this.endDate = constructionDTO.endDate();
+        this.budget = constructionDTO.budget();
+        this.buildingLandArea = constructionDTO.buildingLandArea();
+        this.buildingArea = constructionDTO.buildingArea();
+        this.salesArea = constructionDTO.salesArea();
+        this.numberApartaments = constructionDTO.numberApartaments();
+        this.company = createCompany(constructionDTO.company());
+        this.address = createAddress(constructionDTO.address());
+    }
+
+    private Address createAddress(AddressDTO addressDTO) {
+        if (addressDTO != null) {
+            return new Address(addressDTO);
+        } else {
+            return null;
+        }
+    }
+
+    private Company createCompany(CompanyDTO companyDTO) {
+        if (companyDTO != null) {
+            return new Company(companyDTO);
+        } else {
+            return null;
+        }
+    }
+
 }

@@ -1,6 +1,10 @@
 package com.construcontrol.construcontrol.model.domain;
-import lombok.*;
+
+import com.construcontrol.construcontrol.DTO.CompanyDTO;
+import com.construcontrol.construcontrol.DTO.AddressDTO;
+import com.construcontrol.construcontrol.DTO.ManagerDTO;
 import jakarta.persistence.*;
+import lombok.*;
 
 @Getter
 @Setter
@@ -23,4 +27,27 @@ public class Company {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
+    public Company(CompanyDTO companyDTO) {
+        this.company = companyDTO.company();
+        this.cnpj = companyDTO.cnpj();
+        this.manager = createManager(companyDTO.manager());
+        this.address = createAddress(companyDTO.address());
+    }
+
+    private Address createAddress(AddressDTO addressDTO) {
+        if (addressDTO != null) {
+            return new Address(addressDTO);
+        } else {
+            return null;
+        }
+    }
+
+    private Manager createManager(ManagerDTO managerDTO) {
+        if (managerDTO != null) {
+            return new Manager(managerDTO);
+        } else {
+            return null;
+        }
+    }
 }
