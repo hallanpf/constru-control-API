@@ -6,7 +6,6 @@ import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Date;
 
 @Getter

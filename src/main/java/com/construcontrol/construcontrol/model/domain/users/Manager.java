@@ -15,7 +15,6 @@ import lombok.*;
 @Table(name = "manager")
 
 public class Manager extends User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
