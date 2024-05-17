@@ -47,4 +47,5 @@ public class Manager extends User {
         this.rg = payload.rg();
         this.address = createAddress(payload.address());
     }
+
 }
