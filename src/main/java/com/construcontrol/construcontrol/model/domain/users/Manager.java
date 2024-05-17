@@ -3,20 +3,23 @@ package com.construcontrol.construcontrol.model.domain.users;
 import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
 import com.construcontrol.construcontrol.shared.AddressDTO;
 import com.construcontrol.construcontrol.DTO.users.ManagerDTO;
+
 import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
+@SuppressWarnings("ALL")
 @Getter
 @Setter
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
 @Table(name = "manager")
 
 public class Manager extends User {
 
-    private UserType userType;
+    @Enumerated(EnumType.STRING)
+    private UserType userType = UserType.GESTOR;
 
     public Manager(ManagerDTO ManagerDTO) {
         this.name = ManagerDTO.name();
@@ -34,6 +37,15 @@ public class Manager extends User {
         } else {
             return null;
         }
+    }
+
+    public void update(ManagerDTO payload) {
+        this.name = payload.name();
+        this.phone = payload.phone();
+        this.email = payload.email();
+        this.cpf = payload.cpf();
+        this.rg = payload.rg();
+        this.address = createAddress(payload.address());
     }
 
 }

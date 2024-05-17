@@ -50,4 +50,17 @@ public class ManagerController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o gestor: " + e.getMessage());
         }
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity updateManagerById(@PathVariable long id, @RequestBody @Validated ManagerDTO payload) {
+        try {
+            var manager = ManagerRepository.getManagerById(id);
+            manager.update(payload);
+            ManagerRepository.save(manager);
+            return ResponseEntity.ok("Gestor atualizado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar o gestor: " + e.getMessage());
+        }
+
+    }
 }

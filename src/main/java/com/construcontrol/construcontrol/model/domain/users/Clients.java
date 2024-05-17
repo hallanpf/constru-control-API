@@ -38,4 +38,15 @@ public class Clients extends User {
             return null;
         }
     }
+
+    public void update(ClientsDTO payload) {
+        this.name = payload.name();
+        this.phone = payload.phone();
+        this.email = payload.email();
+        this.cpf = payload.cpf();
+        this.rg = payload.rg();
+        this.maritalStatus = MaritialStatus.valueOf(payload.maritalStatus());
+        this.address = createAddress(payload.address());
+    }
+
 }
