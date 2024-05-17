@@ -18,16 +18,9 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @Table(name = "clientes_cpf")
 public class Clients extends User {
-    @Column(name = "cpf", unique = true, nullable = false, length = 11)
-    private String cpf;
-    @Column(name = "rg", unique = true, nullable = false, length = 9)
-    private String rg;
+
    @Enumerated(EnumType.STRING)
     private MaritialStatus maritalStatus;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
-
     public Clients(ClientsDTO clientsDTO) {
         this.name = clientsDTO.name();
         this.phone = clientsDTO.phone();

@@ -15,14 +15,8 @@ import lombok.*;
 @Table(name = "manager")
 
 public class Manager extends User {
-    @Column(name = "cpf", unique = true, nullable = false)
-    private String cpf;
-    @Column(name = "rg", unique = true, nullable = false)
-    private String rg;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id", referencedColumnName = "id")
-    private Address address;
 
+    private UserType userType;
 
     public Manager(ManagerDTO ManagerDTO) {
         this.name = ManagerDTO.name();
