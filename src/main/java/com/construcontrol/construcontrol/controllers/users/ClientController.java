@@ -52,4 +52,16 @@ public class ClientController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o cliente: " + e.getMessage());
         }
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity updateClient(@PathVariable long id, @RequestBody @Validated ClientsDTO payload) {
+        try {
+            var client = clientReposirtory.getClientsById(id);
+            client.update(payload);
+            clientReposirtory.save(client);
+            return ResponseEntity.ok("Cliente atualizado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar o cliente: " + e.getMessage());
+        }
+    }
 }
