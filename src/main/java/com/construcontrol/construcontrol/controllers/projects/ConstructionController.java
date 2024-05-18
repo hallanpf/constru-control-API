@@ -21,17 +21,45 @@ public class ConstructionController {
         return ResponseEntity.ok(allConstructions);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity getConstructionById(@PathVariable long id) {
+        var construction = constructionRepository.getConstructionById(id);
+        return ResponseEntity.ok(construction);
+    }
+
     @PostMapping
     public ResponseEntity createConstruction(@RequestBody @Validated ConstructionDTO payload) {
-        Construction construction;
+        Construction constructions;
         try {
-            construction = new Construction(payload);
-            constructionRepository.save(construction);
+            constructions = new Construction(payload);
+            constructionRepository.save(constructions);
             System.out.println(payload);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             System.out.println(payload);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o empreendimento: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteConstructionById(@PathVariable long id) {
+        try {
+            constructionRepository.deleteConstructionById(id);
+            return ResponseEntity.ok("Construção deletado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar dados da construção: " + e.getMessage());
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity updateConstructionById(@PathVariable long id, @RequestBody @Validated ConstructionDTO payload) {
+        try {
+            var construction = constructionRepository.getConstructionById(id);
+            construction.update(payload);
+            constructionRepository.save(construction);
+            return ResponseEntity.ok("Construção atualizado com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar dados da construção: " + e.getMessage());
         }
     }
 }

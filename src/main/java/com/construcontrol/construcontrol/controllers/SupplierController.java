@@ -21,6 +21,12 @@ public class SupplierController {
         return ResponseEntity.ok(allSuppliers);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity getSupplierById(@PathVariable long id) {
+        var supplier = supplierRepository.getSupplierById(id);
+        return ResponseEntity.ok(supplier);
+    }
+
     @PostMapping
     public ResponseEntity createSupplier(@RequestBody @Validated SupplierDTO payload) {
         Supplier supplier;
@@ -32,6 +38,28 @@ public class SupplierController {
         } catch (Exception e) {
             System.out.println(payload);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar fornecedor: " + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteSupplierById(@PathVariable long id) {
+        try {
+            supplierRepository.deleteById(id);
+            return ResponseEntity.ok("Fornecedor deletada com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar fornecedor: " + e.getMessage());
+        }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity updateSupplierById(@PathVariable long id, @RequestBody @Validated SupplierDTO payload) {
+        try {
+            var supplier = supplierRepository.getSupplierById(id);
+            supplier.update(payload);
+            supplierRepository.save(supplier);
+            return ResponseEntity.ok("Fornecedor atualizad1 com sucesso");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar fornecedor: " + e.getMessage());
         }
     }
 }
