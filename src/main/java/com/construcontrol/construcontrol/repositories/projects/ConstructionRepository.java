@@ -1,4 +1,4 @@
-package com.construcontrol.construcontrol.repositories;
+package com.construcontrol.construcontrol.repositories.projects;
 
 import com.construcontrol.construcontrol.model.domain.projects.Construction;
 import org.springframework.data.jpa.repository.JpaRepository;

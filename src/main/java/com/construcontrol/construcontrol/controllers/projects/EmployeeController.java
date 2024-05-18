@@ -1,8 +1,8 @@
-package com.construcontrol.construcontrol.controllers;
+package com.construcontrol.construcontrol.controllers.projects;
 
-import com.construcontrol.construcontrol.DTO.EmployeeDTO;
-import com.construcontrol.construcontrol.model.domain.Employee;
-import com.construcontrol.construcontrol.repositories.EmployeeRepository;
+import com.construcontrol.construcontrol.DTO.projects.EmployeeDTO;
+import com.construcontrol.construcontrol.model.domain.projects.Employee;
+import com.construcontrol.construcontrol.repositories.projects.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

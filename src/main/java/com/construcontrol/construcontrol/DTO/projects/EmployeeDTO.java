@@ -1,4 +1,4 @@
-package com.construcontrol.construcontrol.DTO;
+package com.construcontrol.construcontrol.DTO.projects;
 
 import com.construcontrol.construcontrol.shared.AddressDTO;
 

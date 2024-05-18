@@ -2,7 +2,7 @@ package com.construcontrol.construcontrol.controllers.projects;
 
 import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.model.domain.projects.Construction;
-import com.construcontrol.construcontrol.repositories.ConstructionRepository;
+import com.construcontrol.construcontrol.repositories.projects.ConstructionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +45,7 @@ public class ConstructionController {
     public ResponseEntity deleteConstructionById(@PathVariable long id) {
         try {
             constructionRepository.deleteConstructionById(id);
-            return ResponseEntity.ok("Construção deletado com sucesso");
+            return ResponseEntity.ok("Construção deletada com sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar dados da construção: " + e.getMessage());
         }
@@ -57,7 +57,7 @@ public class ConstructionController {
             var construction = constructionRepository.getConstructionById(id);
             construction.update(payload);
             constructionRepository.save(construction);
-            return ResponseEntity.ok("Construção atualizado com sucesso");
+            return ResponseEntity.ok("Construção atualizada com sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar dados da construção: " + e.getMessage());
         }
