@@ -46,5 +46,14 @@ public class Supplier {
             return null;
         }
     }
+
+    public void update(SupplierDTO payload) {
+        this.supplier = payload.supplier();
+        this.cnpj = payload.cnpj();
+        this.contact_name = payload.contact_name();
+        this.phone = payload.phone();
+        this.email = payload.email();
+        this.address = createAddress(payload.address());
+    }
 }
 
