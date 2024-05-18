@@ -1,6 +1,6 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.projects;
 
-import com.construcontrol.construcontrol.DTO.EmployeeDTO;
+import com.construcontrol.construcontrol.DTO.projects.EmployeeDTO;
 import com.construcontrol.construcontrol.model.domain.users.enums.Function;
 import com.construcontrol.construcontrol.shared.Address;
 import com.construcontrol.construcontrol.shared.AddressDTO;

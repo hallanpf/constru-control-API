@@ -1,8 +1,8 @@
-package com.construcontrol.construcontrol.controllers;
+package com.construcontrol.construcontrol.controllers.projects;
 
-import com.construcontrol.construcontrol.DTO.SupplierDTO;
-import com.construcontrol.construcontrol.model.domain.Supplier;
-import com.construcontrol.construcontrol.repositories.SupplierRepository;
+import com.construcontrol.construcontrol.DTO.projects.SupplierDTO;
+import com.construcontrol.construcontrol.model.domain.projects.Supplier;
+import com.construcontrol.construcontrol.repositories.projects.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +45,7 @@ public class SupplierController {
     public ResponseEntity deleteSupplierById(@PathVariable long id) {
         try {
             supplierRepository.deleteById(id);
-            return ResponseEntity.ok("Fornecedor deletada com sucesso");
+            return ResponseEntity.ok("Fornecedor deletado com sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar fornecedor: " + e.getMessage());
         }
@@ -57,7 +57,7 @@ public class SupplierController {
             var supplier = supplierRepository.getSupplierById(id);
             supplier.update(payload);
             supplierRepository.save(supplier);
-            return ResponseEntity.ok("Fornecedor atualizad1 com sucesso");
+            return ResponseEntity.ok("Fornecedor atualizado com sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar fornecedor: " + e.getMessage());
         }

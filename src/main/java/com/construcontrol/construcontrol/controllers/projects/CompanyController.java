@@ -2,7 +2,7 @@ package com.construcontrol.construcontrol.controllers.projects;
 
 import com.construcontrol.construcontrol.DTO.projects.CompanyDTO;
 import com.construcontrol.construcontrol.model.domain.projects.Company;
-import com.construcontrol.construcontrol.repositories.CompanyRepository;
+import com.construcontrol.construcontrol.repositories.projects.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +40,7 @@ public class CompanyController {
             return ResponseEntity.ok().build();
         } catch (Exception e) {
             System.out.println(payload);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o construtora: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar a construtora: " + e.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class CompanyController {
             var company = companyRepository.getCompanyById(id);
             company.update(payload);
             companyRepository.save(company);
-            return ResponseEntity.ok("Construtora atualizad1 com sucesso");
+            return ResponseEntity.ok("Construtora atualizada com sucesso");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar construtora: " + e.getMessage());
         }
