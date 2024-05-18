@@ -61,6 +61,5 @@ public class EmployeeController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar dados do funcionário: " + e.getMessage());
         }
-
     }
 }
