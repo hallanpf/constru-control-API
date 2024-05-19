@@ -25,9 +25,6 @@ public class Clients extends User {
    @Enumerated(EnumType.STRING)
     private MaritialStatus maritalStatus;
 
-   public Optional<Address> address () {
-         return Optional.ofNullable(address);
-   }
     public Clients(ClientsDTO clientsDTO) {
         this.name = clientsDTO.name();
         this.phone = clientsDTO.phone();
