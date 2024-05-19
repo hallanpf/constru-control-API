@@ -24,6 +24,7 @@ public class ClientController {
    @GetMapping("/{id}")
     public ResponseEntity getClientById(@PathVariable long id) {
         var client = clientReposirtory.getClientsById(id);
+       System.out.println(client);
         return ResponseEntity.ok(client);
     }
 
@@ -33,8 +34,8 @@ public class ClientController {
        try {
            clients = new Clients(payload);
            clientReposirtory.save(clients);
-           System.out.println(payload);
-           return ResponseEntity.ok(payload);
+           System.out.println(clients);
+           return ResponseEntity.ok(clients);
        } catch (Exception e) {
            System.out.println(payload);
            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());

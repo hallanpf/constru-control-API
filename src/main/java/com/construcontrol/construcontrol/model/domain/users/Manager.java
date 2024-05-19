@@ -29,15 +29,8 @@ public class Manager extends User {
         this.cpf = ManagerDTO.cpf();
         this.rg = ManagerDTO.rg();
         super.setUserType(UserType.GESTOR);
-        this.address = createAddress(ManagerDTO.address());
+        this.address = ManagerDTO.address() != null ? new Address(ManagerDTO.address()) : null;
 
-    }
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
     }
 
     public void update(ManagerDTO payload) {
@@ -46,7 +39,7 @@ public class Manager extends User {
         this.email = payload.email();
         this.cpf = payload.cpf();
         this.rg = payload.rg();
-        this.address = createAddress(payload.address());
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 
 }

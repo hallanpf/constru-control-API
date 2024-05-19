@@ -37,15 +37,9 @@ public class Supplier {
         this.contact_name = supplierDTO.contact_name();
         this.phone = supplierDTO.phone();
         this.email = supplierDTO.email();
-        this.address = createAddress(supplierDTO.address());
+        this.address = supplierDTO.address() != null ? new Address(supplierDTO.address()) : null;
     }
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
-    }
+
 
     public void update(SupplierDTO payload) {
         this.supplier = payload.supplier();
@@ -53,7 +47,7 @@ public class Supplier {
         this.contact_name = payload.contact_name();
         this.phone = payload.phone();
         this.email = payload.email();
-        this.address = createAddress(payload.address());
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 }
 

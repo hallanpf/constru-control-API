@@ -33,8 +33,7 @@ public class ManagerController {
         try {
             managers = new Manager(payload);
             ManagerRepository.save(managers);
-            System.out.println(payload);
-            return ResponseEntity.ok(payload);
+            return ResponseEntity.ok(managers);
         } catch (Exception e) {
             System.out.println(payload);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o gestor: " + e.getMessage());

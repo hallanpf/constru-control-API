@@ -32,21 +32,15 @@ public class Company {
         this.company = companyDTO.company();
         this.cnpj = companyDTO.cnpj();
 //        this.manager = getAllManager(managerDTO.name());
-        this.address = createAddress(companyDTO.address());
+        this.address = companyDTO.address() != null ? new Address(companyDTO.address()) : null;
     }
 
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
-    }
+
 
     public void update(CompanyDTO payload) {
         this.company = payload.company();
         this.cnpj = payload.cnpj();
 //        this.manager = payload.manager();
-        this.address = createAddress(payload.address());
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 }

@@ -43,16 +43,10 @@ public class Employee {
         this.function = Function.valueOf(employeeDTO.function());
 //        this.company = findCompany(employeeDTO.company());
 //        this.construction = findConstruction(employeeDTO.construction());
-        this.address = createAddress(employeeDTO.address());
+        this.address = employeeDTO.address() != null ? new Address(employeeDTO.address()) : null;
     }
 
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
-    }
+
 
     public void update(EmployeeDTO payload) {
         this.employee = payload.emplloyee();
@@ -61,6 +55,6 @@ public class Employee {
         this.function = Function.valueOf(payload.function());
 //        this.company = findCompany(payload.company());
 //        this.construction = findConstruction(payload.construction());
-        this.address = createAddress(payload.address());
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 }

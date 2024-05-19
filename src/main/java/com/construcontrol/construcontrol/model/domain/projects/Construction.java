@@ -52,17 +52,10 @@ public class Construction {
         this.buildingArea = constructionDTO.buildingArea();
         this.salesArea = constructionDTO.salesArea();
         this.numberApartaments = constructionDTO.numberApartaments();
-//        this.company = findCompany(constructionDTO.company());
-        this.address = createAddress(constructionDTO.address());
+        this.address = constructionDTO.address() != null ? new Address(constructionDTO.address()) : null;
     }
 
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
-    }
+
 
     public void update(ConstructionDTO payload) {
         this.construction = payload.construction();
@@ -74,8 +67,7 @@ public class Construction {
         this.buildingArea = payload.buildingArea();
         this.salesArea = payload.salesArea();
         this.numberApartaments = payload.numberApartaments();
-//        this.company = findCompany(payload.company());
-        this.address = createAddress(payload.address());
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 
 }
