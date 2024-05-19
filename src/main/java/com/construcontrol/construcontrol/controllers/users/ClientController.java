@@ -1,10 +1,7 @@
 package com.construcontrol.construcontrol.controllers.users;
-
 import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 import com.construcontrol.construcontrol.model.domain.users.Clients;
-import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.repositories.users.ClientRepository;
-import com.construcontrol.construcontrol.shared.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientController {
     @Autowired
     private ClientRepository clientReposirtory;
+
 
     @GetMapping
    public ResponseEntity getAllClients() {
@@ -53,7 +51,7 @@ public class ClientController {
         }
     }
 
-    @PatchMapping("/{id}")
+
     public ResponseEntity updateClient(@PathVariable long id, @RequestBody @Validated ClientsDTO payload) {
         try {
             var client = clientReposirtory.getClientsById(id);
@@ -65,4 +63,6 @@ public class ClientController {
         }
 
     }
+
+
 }

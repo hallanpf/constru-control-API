@@ -15,7 +15,7 @@ import lombok.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "clientes_cpf")
 public class Clients extends User {
 
