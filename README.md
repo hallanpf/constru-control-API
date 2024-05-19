@@ -1,6 +1,6 @@
 ﻿# Informações do Projeto ContruControl
 ## Projeto Linguagem de Programação I - 2024.1
-
+## Documentação do Projeto
 | Disciplina      | LP1              |
 |-----------------|------------------|
 | Professora      | Fernanda Dias    |

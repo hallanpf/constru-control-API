@@ -3,6 +3,7 @@ package com.construcontrol.construcontrol.controllers.projects;
 import com.construcontrol.construcontrol.DTO.projects.CompanyDTO;
 import com.construcontrol.construcontrol.model.domain.projects.Company;
 import com.construcontrol.construcontrol.repositories.projects.CompanyRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +18,19 @@ public class CompanyController {
 
 //    @Autowired
 //    private ManagerRepository managerRepository;
-
+    @Operation(summary = "Get all companies", description = "Method that returns all companies registered in the database", tags = {"companies"})
     @GetMapping
     public ResponseEntity getAllCompanies() {
         var allCompanies = companyRepository.findAll();
         return ResponseEntity.ok(allCompanies);
     }
-
+    @Operation(summary = "Get company by id", description = "Method that returns a company registered in the database by id", tags = {"companies"})
     @GetMapping("/{id}")
     public ResponseEntity getCompanyById(@PathVariable long id) {
         var company = companyRepository.getCompanyById(id);
         return ResponseEntity.ok(company);
     }
-
+    @Operation( summary = "Create a company", description = "Method that creates a company in the database", tags = {"companies"})
     @PostMapping
     public ResponseEntity createCompany(@RequestBody @Validated CompanyDTO payload) {
         Company companies;
@@ -43,7 +44,7 @@ public class CompanyController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar a construtora: " + e.getMessage());
         }
     }
-
+    @Operation(summary = "Delete a company", description = "Method that deletes a company in the database", tags = {"companies"})
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCompanyById(@PathVariable long id) {
         try {
@@ -53,7 +54,7 @@ public class CompanyController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar contrutora: " + e.getMessage());
         }
     }
-
+    @Operation(summary = "Update a company", description = "Method that updates a company in the database", tags = {"companies"})
     @PatchMapping("/{id}")
     public ResponseEntity updateCompanyById(@PathVariable long id, @RequestBody @Validated CompanyDTO payload) {
         try {
