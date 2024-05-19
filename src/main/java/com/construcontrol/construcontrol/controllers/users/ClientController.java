@@ -52,7 +52,7 @@ public class ClientController {
         }
     }
 
-
+    @PatchMapping("/{id}")
     public ResponseEntity updateClient(@PathVariable long id, @RequestBody @Validated ClientsDTO payload) {
         try {
             var client = clientReposirtory.getClientsById(id);

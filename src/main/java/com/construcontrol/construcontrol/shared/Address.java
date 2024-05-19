@@ -25,7 +25,7 @@ public class Address {
     @Column(name = "state", nullable = false)
     private String state;
 
-    public Address (AddressDTO addressDTO){
+    public Address(AddressDTO addressDTO) {
         this.zipCode = addressDTO.zipCode();
         this.streetAddress = addressDTO.streetAddress();
         this.neighborhood = addressDTO.neighborhood();
@@ -34,11 +34,13 @@ public class Address {
     }
 
     public void update(AddressDTO addressDTO) {
-        this.zipCode = addressDTO.zipCode();
-        this.streetAddress = addressDTO.streetAddress();
-        this.neighborhood = addressDTO.neighborhood();
-        this.city = addressDTO.city();
-        this.state = addressDTO.state();
+
+            this.zipCode = addressDTO.zipCode();
+            this.streetAddress = addressDTO.streetAddress();
+            this.neighborhood = addressDTO.neighborhood();
+            this.city = addressDTO.city();
+            this.state = addressDTO.state();
+
 
     }
 }
