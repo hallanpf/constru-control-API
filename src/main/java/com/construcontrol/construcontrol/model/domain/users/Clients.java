@@ -9,18 +9,22 @@ import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @SuppressWarnings("ALL")
 @Getter
 @Setter
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(callSuper = true)
 @Table(name = "clientes_cpf")
 public class Clients extends User {
 
    @Enumerated(EnumType.STRING)
     private MaritialStatus maritalStatus;
+
     public Clients(ClientsDTO clientsDTO) {
         this.name = clientsDTO.name();
         this.phone = clientsDTO.phone();
@@ -28,15 +32,10 @@ public class Clients extends User {
         this.cpf = clientsDTO.cpf();
         this.rg = clientsDTO.rg();
         this.maritalStatus = MaritialStatus.valueOf(clientsDTO.maritalStatus());
+        this.address = clientsDTO.address() != null ? new Address(clientsDTO.address()) : null;
         super.setUserType(UserType.CLIENTE);
-        this.address = createAddress(clientsDTO.address());
-    }
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
+
+
     }
 
     public void update(ClientsDTO payload) {
@@ -46,7 +45,7 @@ public class Clients extends User {
         this.cpf = payload.cpf();
         this.rg = payload.rg();
         this.maritalStatus = MaritialStatus.valueOf(payload.maritalStatus());
-        this.address = createAddress(payload.address());
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 
 }

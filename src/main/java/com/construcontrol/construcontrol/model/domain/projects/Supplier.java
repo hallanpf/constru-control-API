@@ -1,6 +1,6 @@
-package com.construcontrol.construcontrol.model.domain;
+package com.construcontrol.construcontrol.model.domain.projects;
 
-import com.construcontrol.construcontrol.DTO.SupplierDTO;
+import com.construcontrol.construcontrol.DTO.projects.SupplierDTO;
 import com.construcontrol.construcontrol.shared.Address;
 import com.construcontrol.construcontrol.shared.AddressDTO;
 import jakarta.persistence.*;
@@ -37,14 +37,17 @@ public class Supplier {
         this.contact_name = supplierDTO.contact_name();
         this.phone = supplierDTO.phone();
         this.email = supplierDTO.email();
-        this.address = createAddress(supplierDTO.address());
+        this.address = supplierDTO.address() != null ? new Address(supplierDTO.address()) : null;
     }
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
+
+
+    public void update(SupplierDTO payload) {
+        this.supplier = payload.supplier();
+        this.cnpj = payload.cnpj();
+        this.contact_name = payload.contact_name();
+        this.phone = payload.phone();
+        this.email = payload.email();
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 }
 

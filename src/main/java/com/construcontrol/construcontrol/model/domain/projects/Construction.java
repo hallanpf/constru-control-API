@@ -1,12 +1,10 @@
 package com.construcontrol.construcontrol.model.domain.projects;
 
-import com.construcontrol.construcontrol.shared.AddressDTO;
-import com.construcontrol.construcontrol.DTO.projects.CompanyDTO;
 import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.shared.AddressDTO;
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -24,9 +22,9 @@ public class Construction {
     @Column(name = "cnpj")
     private String cnpj;
     @Column(name="start_date")
-    private Date startDate;
+    private String startDate;
     @Column(name="end_date")
-    private Date endDate;
+    private String endDate;
     @Column(name = "buget")
     private double budget;
     @Column(name = "building_land_area")
@@ -37,9 +35,9 @@ public class Construction {
     private double salesArea;
     @Column(name = "number_apartaments")
     private int numberApartaments;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private Company company;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "company_id", referencedColumnName = "id")
+//    private Company company;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
@@ -54,24 +52,22 @@ public class Construction {
         this.buildingArea = constructionDTO.buildingArea();
         this.salesArea = constructionDTO.salesArea();
         this.numberApartaments = constructionDTO.numberApartaments();
-        this.company = createCompany(constructionDTO.company());
-        this.address = createAddress(constructionDTO.address());
+        this.address = constructionDTO.address() != null ? new Address(constructionDTO.address()) : null;
     }
 
-    private Address createAddress(AddressDTO addressDTO) {
-        if (addressDTO != null) {
-            return new Address(addressDTO);
-        } else {
-            return null;
-        }
-    }
 
-    private Company createCompany(CompanyDTO companyDTO) {
-        if (companyDTO != null) {
-            return new Company(companyDTO);
-        } else {
-            return null;
-        }
+
+    public void update(ConstructionDTO payload) {
+        this.construction = payload.construction();
+        this.cnpj = payload.cnpj();
+        this.startDate = payload.startDate();
+        this.endDate = payload.endDate();
+        this.budget = payload.budget();
+        this.buildingLandArea = payload.buildingLandArea();
+        this.buildingArea = payload.buildingArea();
+        this.salesArea = payload.salesArea();
+        this.numberApartaments = payload.numberApartaments();
+        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 
 }
