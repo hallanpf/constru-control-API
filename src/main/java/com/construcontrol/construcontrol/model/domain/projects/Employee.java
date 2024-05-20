@@ -3,7 +3,6 @@ package com.construcontrol.construcontrol.model.domain.projects;
 import com.construcontrol.construcontrol.DTO.projects.EmployeeDTO;
 import com.construcontrol.construcontrol.model.domain.users.enums.Function;
 import com.construcontrol.construcontrol.shared.Address;
-import com.construcontrol.construcontrol.shared.AddressDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,9 +26,6 @@ public class Employee {
     @Enumerated(EnumType.STRING)
     private Function function;
 //    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "company_id", nullable = false, referencedColumnName = "id")
-//    private Company company;
-//    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "construction_id", referencedColumnName = "id")
 //    private Construction construction;
     @OneToOne(cascade = CascadeType.ALL)
@@ -41,19 +37,15 @@ public class Employee {
         this.cpf = employeeDTO.cpf();
         this.phone = employeeDTO.phone();
         this.function = Function.valueOf(employeeDTO.function());
-//        this.company = findCompany(employeeDTO.company());
 //        this.construction = findConstruction(employeeDTO.construction());
         this.address = employeeDTO.address() != null ? new Address(employeeDTO.address()) : null;
     }
-
-
 
     public void update(EmployeeDTO payload) {
         this.employee = payload.emplloyee();
         this.cpf = payload.cpf();
         this.phone = payload.phone();
         this.function = Function.valueOf(payload.function());
-//        this.company = findCompany(payload.company());
 //        this.construction = findConstruction(payload.construction());
         this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
