@@ -2,9 +2,9 @@ package com.construcontrol.construcontrol.model.domain.projects;
 
 import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.shared.Address;
-import com.construcontrol.construcontrol.shared.AddressDTO;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -22,9 +22,9 @@ public class Construction {
     @Column(name = "cnpj")
     private String cnpj;
     @Column(name="start_date")
-    private String startDate;
+    private Date startDate;
     @Column(name="end_date")
-    private String endDate;
+    private Date endDate;
     @Column(name = "buget")
     private double budget;
     @Column(name = "building_land_area")
@@ -53,21 +53,6 @@ public class Construction {
         this.salesArea = constructionDTO.salesArea();
         this.numberApartaments = constructionDTO.numberApartaments();
         this.address = constructionDTO.address() != null ? new Address(constructionDTO.address()) : null;
-    }
-
-
-
-    public void update(ConstructionDTO payload) {
-        this.construction = payload.construction();
-        this.cnpj = payload.cnpj();
-        this.startDate = payload.startDate();
-        this.endDate = payload.endDate();
-        this.budget = payload.budget();
-        this.buildingLandArea = payload.buildingLandArea();
-        this.buildingArea = payload.buildingArea();
-        this.salesArea = payload.salesArea();
-        this.numberApartaments = payload.numberApartaments();
-        this.address = payload.address() != null ? new Address(payload.address()) : null;
     }
 
 }
