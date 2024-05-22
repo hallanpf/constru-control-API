@@ -4,7 +4,9 @@ import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
+
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -38,6 +40,8 @@ public class Construction {
 //    @ManyToOne(cascade = CascadeType.ALL)
 //    @JoinColumn(name = "company_id", referencedColumnName = "id")
 //    private Company company;
+    @OneToMany(mappedBy = "construction", cascade = CascadeType.ALL)
+    private List<Apartament> apartaments;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
@@ -51,6 +55,7 @@ public class Construction {
         this.buildingLandArea = constructionDTO.buildingLandArea();
         this.buildingArea = constructionDTO.buildingArea();
         this.salesArea = constructionDTO.salesArea();
+        this.apartaments = constructionDTO.apartaments();
         this.numberApartaments = constructionDTO.numberApartaments();
         this.address = constructionDTO.address() != null ? new Address(constructionDTO.address()) : null;
     }

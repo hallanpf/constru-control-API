@@ -32,9 +32,9 @@ public class ApartamentController {
         return ResponseEntity.ok(apartament);
     }
 
-    @Operation( summary = "Create a apartament", description = "Method that creates an apartament in the database", tags = {"apartaments"})
+    @Operation( summary = "Create an apartament", description = "Method that creates an apartament in the database", tags = {"apartaments"})
     @PostMapping
-    public ResponseEntity createCompany(@RequestBody @Validated ApartamentDTO apartamentDTO) {
+    public ResponseEntity createApartament(@RequestBody @Validated ApartamentDTO apartamentDTO) {
         Apartament apartament;
         try {
             apartament = new Apartament(apartamentDTO);
