@@ -3,7 +3,10 @@ package com.construcontrol.construcontrol.controllers.users;
 import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 import com.construcontrol.construcontrol.model.domain.users.Clients;
 import com.construcontrol.construcontrol.repositories.users.ClientRepository;
+import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.shared.utils.NullPropertyNamesUtil;
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,16 +58,18 @@ public class ClientController {
     }
     @Operation(summary = "Update a client", description = "Method that updates a client in the database", tags = {"clients"})
     @PatchMapping("/{id}")
-    public ResponseEntity updateClient(@PathVariable long id, @RequestBody @Validated ClientsDTO payload) {
-        try {
-            var client = clientReposirtory.getClientsById(id);
-            client.update(payload);
-            clientReposirtory.save(client);
-            return ResponseEntity.ok("Cliente atualizado com sucesso");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao atualizar o cliente: " + e.getMessage());
+    public Clients updateClients(@PathVariable long id, @RequestBody ClientsDTO payload) {
+        Clients existingClients = clientReposirtory.findById(id)
+                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+        BeanUtils.copyProperties(payload, existingClients, NullPropertyNamesUtil.getNullPropertyNames(payload));
+        if (payload.address() != null) {
+            if (existingClients.getAddress() == null) {
+                existingClients.setAddress(new Address(payload.address()));
+            } else {
+                existingClients.getAddress().update(payload.address());
+            }
         }
-
+        return clientReposirtory.save(existingClients);
     }
 
 
