@@ -8,6 +8,6 @@ public interface ApartamentRepository extends JpaRepository<Apartament, Long> {
     Apartament getApartamentById(long id);
     Optional<Apartament> getApartamentBySold(Boolean soldStatus);
 
-    Apartament deleteApartament(long id);
+    Apartament deleteApartamentById(long id);
     Optional<Apartament> deleteApartamentBySold(Boolean soldStatus);
 }
