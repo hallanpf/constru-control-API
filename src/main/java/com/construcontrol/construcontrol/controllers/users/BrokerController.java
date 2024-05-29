@@ -28,7 +28,7 @@ public class BrokerController {
     @Operation(summary = "Get broker by id", description = "Method that returns a broker registered in the database by id", tags = {"brokers"})
     @GetMapping("/{id}")
     public ResponseEntity getBrokerById(@PathVariable long id) {
-        var broker = brokerRepository.findById(id);
+        var broker = brokerRepository.getBrokerById(id);
         return ResponseEntity.ok(broker);
     }
     @Operation(summary = "Create a broker", description = "Method that creates a broker in the database", tags = {"brokers"})

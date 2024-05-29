@@ -1,19 +1,19 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
 import com.construcontrol.construcontrol.DTO.users.BrokerDTO;
-import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
 import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.*;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "broker")
 public class Broker extends  User{
     private String creci;
 
@@ -25,7 +25,7 @@ public class Broker extends  User{
         this.rg = brokerDTO.rg();
         this.creci = brokerDTO.creci();
         this.address = brokerDTO.address() != null ? new Address(brokerDTO.address()) : null;
-        super.setUserType(UserType.CORRETOR);
+        super.setUserRole(UserRole.CORRETOR);
     }
 
 
