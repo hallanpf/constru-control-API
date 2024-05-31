@@ -32,6 +32,19 @@ public class ClientController {
         System.out.println(client);
         return ResponseEntity.ok(client);
     }
+    @PostMapping
+    public ResponseEntity createClient(@RequestBody @Validated ClientsDTO payload) {
+        Clients clients;
+        try {
+            clients = new Clients(payload);
+            clientReposirtory.save(clients);
+            System.out.println(payload);
+            return ResponseEntity.ok(payload);
+        } catch (Exception e) {
+            System.out.println(payload);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());
+        }
+    }
     @Operation(summary = "Delete a client", description = "Method that deletes a client in the database", tags = {"clients"})
     @DeleteMapping("/{id}")
     public ResponseEntity deleteClient(@PathVariable long id) {
