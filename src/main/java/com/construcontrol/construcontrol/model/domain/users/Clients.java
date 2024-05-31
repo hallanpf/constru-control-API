@@ -1,25 +1,20 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
 import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
-import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
-import com.construcontrol.construcontrol.shared.AddressDTO;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
 import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 
 import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
-import javax.swing.text.html.Option;
-import java.util.Optional;
-
+@Entity
 @SuppressWarnings("ALL")
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "clientes_cpf")
 public class Clients extends User {
 
    @Enumerated(EnumType.STRING)
@@ -33,7 +28,7 @@ public class Clients extends User {
         this.rg = clientsDTO.rg();
         this.maritalStatus = MaritialStatus.valueOf(clientsDTO.maritalStatus());
         this.address = clientsDTO.address() != null ? new Address(clientsDTO.address()) : null;
-        super.setUserType(UserType.CLIENTE);
+        super.setUserRole(UserRole.CLIENTE);
 
 
     }

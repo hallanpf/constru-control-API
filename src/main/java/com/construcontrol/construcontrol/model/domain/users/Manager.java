@@ -1,26 +1,24 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
-import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
-import com.construcontrol.construcontrol.shared.AddressDTO;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
 import com.construcontrol.construcontrol.DTO.users.ManagerDTO;
 
 import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @SuppressWarnings("ALL")
 @Getter
 @Setter
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-@Table(name = "manager")
 
 public class Manager extends User {
 
     @Enumerated(EnumType.STRING)
-    private UserType userType = UserType.GESTOR;
+    private UserRole userRole = UserRole.GESTOR;
 
     public Manager(ManagerDTO ManagerDTO) {
         this.name = ManagerDTO.name();
@@ -28,7 +26,7 @@ public class Manager extends User {
         this.email = ManagerDTO.email();
         this.cpf = ManagerDTO.cpf();
         this.rg = ManagerDTO.rg();
-        super.setUserType(UserType.GESTOR);
+        super.setUserRole(UserRole.GESTOR);
         this.address = ManagerDTO.address() != null ? new Address(ManagerDTO.address()) : null;
 
     }
