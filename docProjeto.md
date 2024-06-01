@@ -53,7 +53,6 @@ Para testar as rotas, siga estas instruções:
         "userRole": "CLIENTE"
       } 
       ```
-      
     - Para validar o login basta passar o e-mail usado no registro do usuário e sua respectiva senha. Exemplo:
 
         - Login de um usuário:
