@@ -2,6 +2,7 @@ package com.construcontrol.construcontrol.model.domain.projects;
 
 import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.shared.Documents;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -45,6 +46,9 @@ public class Construction {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "documents_id", referencedColumnName = "id")
+    private Documents documents;
 
     public Construction(ConstructionDTO constructionDTO) {
         this.construction = constructionDTO.construction();
@@ -58,6 +62,7 @@ public class Construction {
         this.apartaments = constructionDTO.apartaments();
         this.numberApartaments = constructionDTO.numberApartaments();
         this.address = constructionDTO.address() != null ? new Address(constructionDTO.address()) : null;
+        this.documents = constructionDTO.documents() != null ? new Documents(constructionDTO.documents()) : null;
     }
 
 }
