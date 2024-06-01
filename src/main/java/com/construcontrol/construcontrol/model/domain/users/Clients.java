@@ -1,16 +1,14 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
+import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.model.domain.users.enums.UserType;
-import com.construcontrol.construcontrol.shared.AddressDTO;
-import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
-
 import com.construcontrol.construcontrol.shared.Address;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Table;
 import lombok.*;
-
-import javax.swing.text.html.Option;
-import java.util.Optional;
 
 @SuppressWarnings("ALL")
 @Getter
@@ -34,8 +32,6 @@ public class Clients extends User {
         this.maritalStatus = MaritialStatus.valueOf(clientsDTO.maritalStatus());
         this.address = clientsDTO.address() != null ? new Address(clientsDTO.address()) : null;
         super.setUserType(UserType.CLIENTE);
-
-
     }
 
     public void update(ClientsDTO payload) {
