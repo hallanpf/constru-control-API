@@ -10,7 +10,6 @@ import lombok.*;
 @Setter
 @Entity
 @Table(name = "documents")
-
 public class Documents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +18,7 @@ public class Documents {
     private String alvara;
     @Column(name = "licenca_instalacao", nullable = false)
     private String licencaInstalacao;
-    @Column(name = "habite_se",  nullable = false)
+    @Column(name = "habite_se", nullable = false)
     private String habiteSe;
 
     public Documents(DocumentsDTO documentsDTO) {
