@@ -1,7 +1,6 @@
 package com.construcontrol.construcontrol.shared.utils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
-
 import java.util.HashSet;
 import java.util.Set;
 

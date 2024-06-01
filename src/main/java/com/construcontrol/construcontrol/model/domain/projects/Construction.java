@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -30,19 +29,10 @@ public class Construction {
     private Date endDate;
     @Column(name = "buget")
     private double budget;
-    @Column(name = "building_land_area")
-    private double buildingLandArea;
-    @Column(name = "building_area")
-    private double buildingArea;
-    @Column(name = "sales_area")
-    private double salesArea;
     @Column(name = "number_apartaments")
     private int numberApartaments;
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "company_id", referencedColumnName = "id")
-//    private Company company;
-    @OneToMany(mappedBy = "construction", cascade = CascadeType.ALL)
-    private List<Apartament> apartaments;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "construction", cascade = CascadeType.ALL)
+//    private List<Apartament> apartamentsList;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
@@ -56,13 +46,9 @@ public class Construction {
         this.startDate = constructionDTO.startDate();
         this.endDate = constructionDTO.endDate();
         this.budget = constructionDTO.budget();
-        this.buildingLandArea = constructionDTO.buildingLandArea();
-        this.buildingArea = constructionDTO.buildingArea();
-        this.salesArea = constructionDTO.salesArea();
-        this.apartaments = constructionDTO.apartaments();
+//        this.apartamentsList = constructionDTO.apartamentsList();
         this.numberApartaments = constructionDTO.numberApartaments();
         this.address = constructionDTO.address() != null ? new Address(constructionDTO.address()) : null;
         this.documents = constructionDTO.documents() != null ? new Documents(constructionDTO.documents()) : null;
     }
-
 }

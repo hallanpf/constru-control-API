@@ -25,6 +25,7 @@ public class ClientController {
         var allClients = clientReposirtory.findAll();
         return ResponseEntity.ok(allClients);
     }
+
     @Operation(summary = "Get client by id", description = "Method that returns a client registered in the database by id", tags = {"clients"})
     @GetMapping("/{id}")
     public ResponseEntity getClientById(@PathVariable long id) {
@@ -32,6 +33,8 @@ public class ClientController {
         System.out.println(client);
         return ResponseEntity.ok(client);
     }
+
+    @Operation(summary = "Create a client", description = "Method that creates a client in the database", tags = {"clients"})
     @PostMapping
     public ResponseEntity createClient(@RequestBody @Validated ClientsDTO payload) {
         Clients clients;
@@ -45,6 +48,7 @@ public class ClientController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());
         }
     }
+
     @Operation(summary = "Delete a client", description = "Method that deletes a client in the database", tags = {"clients"})
     @DeleteMapping("/{id}")
     public ResponseEntity deleteClient(@PathVariable long id) {
@@ -55,6 +59,7 @@ public class ClientController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o cliente: " + e.getMessage());
         }
     }
+
     @Operation(summary = "Update a client", description = "Method that updates a client in the database", tags = {"clients"})
     @PatchMapping("/{id}")
     public Clients updateClients(@PathVariable long id, @RequestBody ClientsDTO payload) {
@@ -70,6 +75,5 @@ public class ClientController {
         }
         return clientReposirtory.save(existingClients);
     }
-
 
 }

@@ -1,9 +1,8 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
+import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
 import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
-import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
-
 import com.construcontrol.construcontrol.shared.Address;
 import com.construcontrol.construcontrol.shared.Documents;
 import jakarta.persistence.*;
@@ -34,8 +33,6 @@ public class Clients extends User {
         this.address = clientsDTO.address() != null ? new Address(clientsDTO.address()) : null;
         this.documents = clientsDTO.documents() != null ? new Documents(clientsDTO.documents()) : null;
         super.setUserRole(UserRole.CLIENTE);
-
-
     }
 
     public void update(ClientsDTO payload) {
