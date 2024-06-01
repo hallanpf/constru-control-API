@@ -1,4 +1,4 @@
-﻿# Informações do Projeto ContruControl
+﻿# Informações do Projeto ConstruControl
 ## Projeto Linguagem de Programação I - 2024.1
 ## Documentação do Projeto
 | Disciplina      | LP1              |
