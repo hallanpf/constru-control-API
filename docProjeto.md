@@ -41,7 +41,7 @@ Para testar as rotas, siga estas instruções:
         {
           "login": "gabrielmarques@email.com",
           "password": "123456",
-          "role": "GESTOR"
+          "userRole": "GESTOR"
         }
         ```
     - Cadastrando um cliente:
@@ -50,7 +50,7 @@ Para testar as rotas, siga estas instruções:
       {
         "login": "gabrielmarques@email.com",
         "password": "123456",
-        "role": "CLIENTE"
+        "userRole": "CLIENTE"
       } 
       ```
     - Para validar o login basta passar o e-mail usado no registro do usuário e sua respectiva senha. Exemplo:
