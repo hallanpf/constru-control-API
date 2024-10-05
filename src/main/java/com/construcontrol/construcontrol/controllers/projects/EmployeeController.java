@@ -3,6 +3,7 @@ package com.construcontrol.construcontrol.controllers.projects;
 import com.construcontrol.construcontrol.DTO.projects.EmployeeDTO;
 import com.construcontrol.construcontrol.model.domain.projects.Employee;
 import com.construcontrol.construcontrol.repositories.projects.EmployeeRepository;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,14 @@ public class EmployeeController {
         return ResponseEntity.ok(employee);
     }
 
+    @Operation(summary = "Create a employee", description = """
+            Function key must be SERVENTE,
+                PEDREIRO,
+                CARPINTEIRO,
+                BETONEIRO,
+                MESTRE_DE_OBRAS,
+                ENGENHEIRO,
+                AUXILIAR_ADMINISTRATIVO""")
     @PostMapping
     public ResponseEntity createEmployee(@RequestBody @Validated EmployeeDTO payload) {
         Employee employees;

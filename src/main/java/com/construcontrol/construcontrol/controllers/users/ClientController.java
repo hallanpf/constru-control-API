@@ -16,64 +16,69 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/clients")
 public class ClientController {
-    @Autowired
-    private ClientRepository clientReposirtory;
+  @Autowired
+  private ClientRepository clientReposirtory;
 
-    @Operation(summary = "Get all clients", description = "Method that returns all clients registered in the database", tags = {"clients"})
-    @GetMapping
-    public ResponseEntity getAllClients() {
-        var allClients = clientReposirtory.findAll();
-        return ResponseEntity.ok(allClients);
-    }
+  @Operation(summary = "Get all clients", description = "Method that returns all clients registered in the database", tags = {"clients"})
+  @GetMapping
+  public ResponseEntity getAllClients() {
+    var allClients = clientReposirtory.findAll();
+    return ResponseEntity.ok(allClients);
+  }
 
-    @Operation(summary = "Get client by id", description = "Method that returns a client registered in the database by id", tags = {"clients"})
-    @GetMapping("/{id}")
-    public ResponseEntity getClientById(@PathVariable long id) {
-        var client = clientReposirtory.getClientsById(id);
-        System.out.println(client);
-        return ResponseEntity.ok(client);
-    }
+  @Operation(summary = "Get client by id", description = "Method that returns a client registered in the database by id", tags = {"clients"})
+  @GetMapping("/{id}")
+  public ResponseEntity getClientById(@PathVariable long id) {
+    var client = clientReposirtory.getClientsById(id);
+    System.out.println(client);
+    return ResponseEntity.ok(client);
+  }
 
-    @Operation(summary = "Create a client", description = "Method that creates a client in the database", tags = {"clients"})
-    @PostMapping
-    public ResponseEntity createClient(@RequestBody @Validated ClientsDTO payload) {
-        Clients clients;
-        try {
-            clients = new Clients(payload);
-            clientReposirtory.save(clients);
-            System.out.println(payload);
-            return ResponseEntity.ok(payload);
-        } catch (Exception e) {
-            System.out.println(payload);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());
-        }
+  @Operation(summary = "Create a client", description = "MaritialStatus key must be SOLTEIRO,\n" +
+          "    CASADO,\n" +
+          "    DIVORCIADO,\n" +
+          "    VIUVO,\n" +
+          "    UNIAO_ESTAVEL,\n" +
+          "    SEPARADO", tags = {"clients"})
+  @PostMapping
+  public ResponseEntity createClient(@RequestBody @Validated ClientsDTO payload) {
+    Clients clients;
+    try {
+      clients = new Clients(payload);
+      clientReposirtory.save(clients);
+      System.out.println(payload);
+      return ResponseEntity.ok(payload);
+    } catch (Exception e) {
+      System.out.println(payload);
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o cliente: " + e.getMessage());
     }
+  }
 
-    @Operation(summary = "Delete a client", description = "Method that deletes a client in the database", tags = {"clients"})
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteClient(@PathVariable long id) {
-        try {
-            clientReposirtory.deleteById(id);
-            return ResponseEntity.ok("Cliente deletado com sucesso");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o cliente: " + e.getMessage());
-        }
+  @Operation(summary = "Delete a client", description = "Method that deletes a client in the database", tags = {"clients"})
+  @DeleteMapping("/{id}")
+  public ResponseEntity deleteClient(@PathVariable long id) {
+    try {
+      clientReposirtory.deleteById(id);
+      return ResponseEntity.ok("Cliente deletado com sucesso");
+    } catch (Exception e) {
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o cliente: " + e.getMessage());
     }
+  }
 
-    @Operation(summary = "Update a client", description = "Method that updates a client in the database", tags = {"clients"})
-    @PatchMapping("/{id}")
-    public Clients updateClients(@PathVariable long id, @RequestBody ClientsDTO payload) {
-        Clients existingClients = clientReposirtory.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-        BeanUtils.copyProperties(payload, existingClients, NullPropertyNamesUtil.getNullPropertyNames(payload));
-        if (payload.address() != null) {
-            if (existingClients.getAddress() == null) {
-                existingClients.setAddress(new Address(payload.address()));
-            } else {
-                existingClients.getAddress().update(payload.address());
-            }
-        }
-        return clientReposirtory.save(existingClients);
+  @Operation(summary = "Update a client", description = "Method that updates a client in the database", tags = {"clients"})
+  @PatchMapping("/{id}")
+  public Clients updateClients(@PathVariable long id, @RequestBody ClientsDTO payload) {
+    Clients existingClients = clientReposirtory.findById(id)
+            .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+    BeanUtils.copyProperties(payload, existingClients, NullPropertyNamesUtil.getNullPropertyNames(payload));
+    if (payload.address() != null) {
+      if (existingClients.getAddress() == null) {
+        existingClients.setAddress(new Address(payload.address()));
+      } else {
+        existingClients.getAddress().update(payload.address());
+      }
     }
+    return clientReposirtory.save(existingClients);
+  }
 
 }
