@@ -8,12 +8,10 @@ import lombok.*;
 
 import java.util.Date;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Data
 @Entity
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 @Table(name = "constructions")
 public class Construction {
     @Id

@@ -4,12 +4,10 @@ import com.construcontrol.construcontrol.DTO.projects.ApartamentDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Data
 @Entity
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
 @Table(name = "apartaments")
 public class Apartament {
     @Id

@@ -11,13 +11,11 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
-@Table(name = "users")
+@Data
 @Entity
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+@Table(name = "users")
 @ToString
 public class User implements UserDetails {
   @Id
