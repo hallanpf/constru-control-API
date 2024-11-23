@@ -1,8 +1,24 @@
 package com.construcontrol.construcontrol.DTO.users;
 
-
+import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
 import com.construcontrol.construcontrol.shared.AddressDTO;
-import com.construcontrol.construcontrol.shared.DocumentsDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record ClientsDTO(String name, String phone, String email, String cpf, String rg, String maritalStatus, AddressDTO address, DocumentsDTO documents) {
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+public class ClientsDTO {
+    private long id;
+    private String name;
+    private String cpf;
+    private String rg;
+    private String phone;
+    private String email;
+    private String password;
+    private AddressDTO address;
+    private UserRole userRole;
+    private MaritialStatus maritalStatus;
 }

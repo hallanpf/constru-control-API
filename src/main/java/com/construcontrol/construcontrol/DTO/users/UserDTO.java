@@ -1,6 +1,21 @@
 package com.construcontrol.construcontrol.DTO.users;
 
 import com.construcontrol.construcontrol.shared.AddressDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record UserDTO(String name, String phone, String userRole , String email, String password, String cpf, String rg, AddressDTO address) {
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+public class UserDTO {
+    private long id;
+    private String name;
+    private String cpf;
+    private String rg;
+    private String phone;
+    private String email;
+    private String password;
+    private AddressDTO address;
+    private UserDTO userRole;
 }
