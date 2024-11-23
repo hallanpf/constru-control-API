@@ -39,13 +39,6 @@ public class User implements UserDetails {
   @JoinColumn(name = "address_id", referencedColumnName = "id")
   protected Address address;
 
-
-  public User(String email, String password, UserRole userRole) {
-    this.email = email;
-    this.password = password;
-    this.userRole = userRole;
-  }
-
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     if (this.userRole == UserRole.GESTOR)
