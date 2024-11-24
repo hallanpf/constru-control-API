@@ -1,78 +1,67 @@
 package com.construcontrol.construcontrol.controllers.users;
 
 import com.construcontrol.construcontrol.DTO.users.ManagerDTO;
-import com.construcontrol.construcontrol.model.domain.users.Manager;
-import com.construcontrol.construcontrol.repositories.users.ManagerRepository;
-import com.construcontrol.construcontrol.model.domain.projects.Address;
-import com.construcontrol.construcontrol.shared.utils.NullPropertyNamesUtil;
+import com.construcontrol.construcontrol.services.users.ManagerService;
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 @RequestMapping("/manager")
+@RequiredArgsConstructor
 @RestController
+@Slf4j
 public class ManagerController {
-    @Autowired
-    private ManagerRepository ManagerRepository;
-
-    @Operation(summary = "Get all managers", description = "Method that returns all managers registered in the database", tags = {"managers"})
-    @GetMapping
-    public ResponseEntity getAllManager() {
-        var allManagers = ManagerRepository.findAll();
-        return ResponseEntity.ok(allManagers);
-    }
-
-    @Operation(summary = "Get manager by id", description = "Method that returns a manager registered in the database by id", tags = {"managers"})
-    @GetMapping("/{id}")
-    public ResponseEntity getManagerById(@PathVariable long id) {
-        var manager = ManagerRepository.getManagerById(id);
-        return ResponseEntity.ok(manager);
-    }
+    private final ManagerService managerService;
 
     @Operation(summary = "Create a manager", description = "Method that creates a manager in the database", tags = {"managers"})
     @PostMapping
-    public ResponseEntity createManager(@RequestBody @Validated ManagerDTO payload) {
-        Manager managers;
-        try {
-            managers = new Manager(payload);
-            ManagerRepository.save(managers);
-            return ResponseEntity.ok(managers);
-        } catch (Exception e) {
-            System.out.println(payload);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao criar o gestor: " + e.getMessage());
-        }
+    public ResponseEntity<ManagerDTO> criarManager(@RequestBody @Validated ManagerDTO managerDTO) {
+        log.info("Chamando criarManager no ManagerController com dados: {}", managerDTO);
+        ManagerDTO newManager = managerService.criarManager(managerDTO);
+        return ResponseEntity.ok(newManager);
     }
 
-    @Operation(summary = "Delete a manager", description = "Method that deletes a manager in the database", tags = {"managers"})
-    @DeleteMapping("/{id}")
-    public ResponseEntity deleteManagerById(@PathVariable long id) {
-        try {
-            ManagerRepository.deleteById(id);
-            return ResponseEntity.ok("Gestor deletado com sucesso");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao deletar o gestor: " + e.getMessage());
-        }
+    @Operation(summary = "Get all managers", description = "Method that returns all managers registered in the database", tags = {"managers"})
+    @GetMapping
+    public ResponseEntity<List<ManagerDTO>> listarManagers() {
+        log.info("Chamando listarManagers no ManagerController");
+        List<ManagerDTO> managers = managerService.listarManagers();
+        return ResponseEntity.ok(managers);
+    }
+
+    @Operation(summary = "Get managers by id", description = "Method that returns a manager registered in the database by id", tags = {"managers"})
+    @GetMapping("/{id}")
+    public ResponseEntity<ManagerDTO> buscarManagerPorId(@PathVariable long id) {
+        log.info("Chamando buscarManagerPorId no ManagerController com id: {}", id);
+        Optional<ManagerDTO> manager = managerService.buscarManagerPorId(id);
+        return manager.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Operation(summary = "Update a manager", description = "Method that updates a manager in the database", tags = {"managers"})
     @PatchMapping("/{id}")
-    public Manager updateManager(@PathVariable long id, @RequestBody ManagerDTO payload) {
-        Manager existingManager = ManagerRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Gestor não encontrado"));
-        BeanUtils.copyProperties(payload, existingManager, NullPropertyNamesUtil.getNullPropertyNames(payload));
-        if (payload.address() != null) {
-            if (existingManager.getAddress() == null) {
-                existingManager.setAddress(new Address(payload.address()));
-            } else {
-                existingManager.getAddress().update(payload.address());
-            }
-        }
-        return ManagerRepository.save(existingManager);
+    public ResponseEntity<ManagerDTO> atualizarManager(@PathVariable long id, @RequestBody ManagerDTO managerDTO) {
+        log.info("Chamando atualizarManager no ManagerController com id: {} e dados: {}", id, managerDTO);
+        Optional<ManagerDTO> managerAtualizado = managerService.atualizarManager(id, managerDTO);
+        return managerAtualizado.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @Operation(summary = "Delete an manager", description = "Method that deletes an manager in the database", tags = {"managers"})
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarManager(@PathVariable long id) {
+        log.info("Chamando deletarManager no ManagerController com id: {}", id);
+        boolean deletado = managerService.deletarManager(id);
+        if (deletado) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
-
