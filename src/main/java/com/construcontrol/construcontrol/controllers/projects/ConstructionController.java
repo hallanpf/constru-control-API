@@ -3,7 +3,7 @@ package com.construcontrol.construcontrol.controllers.projects;
 import com.construcontrol.construcontrol.DTO.projects.ConstructionDTO;
 import com.construcontrol.construcontrol.model.domain.projects.Construction;
 import com.construcontrol.construcontrol.repositories.projects.ConstructionRepository;
-import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.model.domain.projects.Address;
 import com.construcontrol.construcontrol.shared.utils.NullPropertyNamesUtil;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.BeanUtils;

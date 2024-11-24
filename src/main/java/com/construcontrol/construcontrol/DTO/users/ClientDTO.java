@@ -2,6 +2,7 @@ package com.construcontrol.construcontrol.DTO.users;
 
 import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
+import com.construcontrol.construcontrol.DTO.projects.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
