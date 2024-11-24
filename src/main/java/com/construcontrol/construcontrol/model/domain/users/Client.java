@@ -9,7 +9,7 @@ import lombok.*;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Clients extends User {
+public class Client extends User {
     @Enumerated(EnumType.STRING)
     private UserRole userRole = UserRole.CLIENTE;
     @Enumerated(EnumType.STRING)

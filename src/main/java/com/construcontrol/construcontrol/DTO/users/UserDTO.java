@@ -1,6 +1,6 @@
 package com.construcontrol.construcontrol.DTO.users;
 
-import com.construcontrol.construcontrol.shared.AddressDTO;
+import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +16,6 @@ public class UserDTO {
     private String phone;
     private String email;
     private String password;
-    private AddressDTO address;
-    private UserDTO userRole;
+//    private AddressDTO address;
+    private UserRole userRole;
 }

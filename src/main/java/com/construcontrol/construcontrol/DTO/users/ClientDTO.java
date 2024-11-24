@@ -2,7 +2,6 @@ package com.construcontrol.construcontrol.DTO.users;
 
 import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
-import com.construcontrol.construcontrol.shared.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class ClientsDTO {
+public class ClientDTO {
     private long id;
     private String name;
     private String cpf;
@@ -18,7 +17,7 @@ public class ClientsDTO {
     private String phone;
     private String email;
     private String password;
-    private AddressDTO address;
+//    private AddressDTO address;
     private UserRole userRole;
     private MaritialStatus maritalStatus;
 }

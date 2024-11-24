@@ -1,7 +1,7 @@
 package com.construcontrol.construcontrol.controllers.users;
 
-import com.construcontrol.construcontrol.DTO.users.ClientsDTO;
-import com.construcontrol.construcontrol.model.domain.users.Clients;
+import com.construcontrol.construcontrol.DTO.users.ClientDTO;
+import com.construcontrol.construcontrol.model.domain.users.Client;
 import com.construcontrol.construcontrol.repositories.users.ClientRepository;
 import com.construcontrol.construcontrol.shared.Address;
 import com.construcontrol.construcontrol.shared.utils.NullPropertyNamesUtil;
@@ -41,11 +41,11 @@ public class ClientController {
           "    UNIAO_ESTAVEL,\n" +
           "    SEPARADO", tags = {"clients"})
   @PostMapping
-  public ResponseEntity createClient(@RequestBody @Validated ClientsDTO payload) {
-    Clients clients;
+  public ResponseEntity createClient(@RequestBody @Validated ClientDTO payload) {
+    Client client;
     try {
-      clients = new Clients(payload);
-      clientReposirtory.save(clients);
+      client = new Client(payload);
+      clientReposirtory.save(client);
       System.out.println(payload);
       return ResponseEntity.ok(payload);
     } catch (Exception e) {
@@ -67,18 +67,18 @@ public class ClientController {
 
   @Operation(summary = "Update a client", description = "Method that updates a client in the database", tags = {"clients"})
   @PatchMapping("/{id}")
-  public Clients updateClients(@PathVariable long id, @RequestBody ClientsDTO payload) {
-    Clients existingClients = clientReposirtory.findById(id)
+  public Client updateClients(@PathVariable long id, @RequestBody ClientDTO payload) {
+    Client existingClient = clientReposirtory.findById(id)
             .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-    BeanUtils.copyProperties(payload, existingClients, NullPropertyNamesUtil.getNullPropertyNames(payload));
+    BeanUtils.copyProperties(payload, existingClient, NullPropertyNamesUtil.getNullPropertyNames(payload));
     if (payload.address() != null) {
-      if (existingClients.getAddress() == null) {
-        existingClients.setAddress(new Address(payload.address()));
+      if (existingClient.getAddress() == null) {
+        existingClient.setAddress(new Address(payload.address()));
       } else {
-        existingClients.getAddress().update(payload.address());
+        existingClient.getAddress().update(payload.address());
       }
     }
-    return clientReposirtory.save(existingClients);
+    return clientReposirtory.save(existingClient);
   }
 
 }

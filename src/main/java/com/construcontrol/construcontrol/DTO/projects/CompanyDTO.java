@@ -1,6 +1,5 @@
 package com.construcontrol.construcontrol.DTO.projects;
 
-import com.construcontrol.construcontrol.shared.AddressDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,5 +11,5 @@ public class CompanyDTO {
     private long id;
     private String company;
     private String cnpj;
-    private AddressDTO address;
+//    private AddressDTO address;
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ApartamentDTO {
     private long id;
-    private ConstructionDTO construction;
+//    private ConstructionDTO construction;
     private String number;
     private double area;
     private double price;
