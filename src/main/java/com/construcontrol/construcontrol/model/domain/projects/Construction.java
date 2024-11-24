@@ -1,6 +1,5 @@
 package com.construcontrol.construcontrol.model.domain.projects;
 
-import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 

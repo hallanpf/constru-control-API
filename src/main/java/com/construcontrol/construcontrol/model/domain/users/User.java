@@ -1,7 +1,7 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
 import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
-import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.model.domain.projects.Address;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
