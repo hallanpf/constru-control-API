@@ -39,7 +39,10 @@ public class User implements UserDetails {
   @JoinColumn(name = "address_id", referencedColumnName = "id")
   protected Address address;
 
-  public User(String login, String encryptedPassword, UserRole userRole) {
+  public User(String login, String password, UserRole userRole) {
+    this.email = login;
+    this.password = password;
+    this.userRole = userRole;
   }
 
   @Override

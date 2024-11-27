@@ -1,5 +1,6 @@
 package com.construcontrol.construcontrol.services;
 
+import ch.qos.logback.classic.Logger;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
@@ -17,25 +18,33 @@ public class TokenService {
 
   @Value("${api.security.token.secret}")
   private String secret;
+  private Logger logger;
 
   public String generateToken(User user) {
     try {
       Algorithm algorithm = Algorithm.HMAC256(secret);
-      String token = JWT.create().withIssuer("constru-control-API").withSubject(user.getEmail()).withExpiresAt(genExpirationDate()).sign(algorithm);
+      String token = JWT.create()
+              .withIssuer("constru-control-API")
+              .withSubject(user.getEmail())
+              .withExpiresAt(genExpirationDate())
+              .sign(algorithm);
       return token;
     } catch (JWTCreationException exception) {
       throw new JWTCreationException("Error while generating token", exception);
-
     }
   }
 
   public String validateToken(String token) {
     try {
       Algorithm algorithm = Algorithm.HMAC256(secret);
-      return JWT.require(algorithm).withIssuer("constru-control-API").build().verify(token).getSubject();
+      return JWT.require(algorithm)
+              .withIssuer("constru-control-API")
+              .build()
+              .verify(token)
+              .getSubject();
     } catch (JWTVerificationException exception) {
-      return "";
-
+      logger.error("Error while validating token: ", exception);
+      return null;
     }
   }
 
