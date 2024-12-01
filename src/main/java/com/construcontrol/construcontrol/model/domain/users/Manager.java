@@ -7,11 +7,8 @@ import com.construcontrol.construcontrol.shared.Address;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
-@SuppressWarnings("ALL")
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 

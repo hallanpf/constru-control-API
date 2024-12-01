@@ -8,11 +8,8 @@ import com.construcontrol.construcontrol.shared.Documents;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Entity
-@SuppressWarnings("ALL")
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Clients extends User {
