@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConstructionRepository extends JpaRepository<Construction, Long> {
-    Construction getConstructionById(long id);
 }

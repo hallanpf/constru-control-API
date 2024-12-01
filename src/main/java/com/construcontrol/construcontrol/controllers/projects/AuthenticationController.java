@@ -21,33 +21,34 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("auth")
 @RestController
 public class AuthenticationController {
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private TokenService tokenService;
 
-  @Autowired
-  private AuthenticationManager authenticationManager;
-  @Autowired
-  private UserRepository userRepository;
-  @Autowired
-  private TokenService tokenService;
-@Operation(summary = "Login", description = "Method that authenticates a user in the system", tags = {"auth"})
-  @PostMapping("/login")
-  public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
-    var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-    var auth = this.authenticationManager.authenticate(usernamePassword);
+    @Operation(summary = "Login", description = "Method that authenticates a user in the system", tags = {"auth"})
+    @PostMapping("/login")
+    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO data) {
+        var usernamePassword = new UsernamePasswordAuthenticationToken(data.getLogin(), data.getPassword());
+        var auth = this.authenticationManager.authenticate(usernamePassword);
 
-    var token = tokenService.generateToken((User) auth.getPrincipal());
-    return ResponseEntity.ok(new LoginResponseDTO(token));
-  }
-@Operation(summary = "Register", description = "Method that registers a user in the system", tags = {"auth"})
-  @PostMapping("/register")
-  public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
-    if (this.userRepository.findByEmail(data.login()) != null) return ResponseEntity.badRequest().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+        return ResponseEntity.ok(new LoginResponseDTO(token));
+    }
 
-    String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-    User newUser = new User(data.login(), encryptedPassword, data.userRole());
+    @Operation(summary = "Register", description = "Method that registers a user in the system", tags = {"auth"})
+    @PostMapping("/register")
+    public ResponseEntity register(@RequestBody @Valid RegisterDTO data) {
+        if (this.userRepository.findByEmail(data.getLogin()) != null) return ResponseEntity.badRequest().build();
 
-    this.userRepository.save(newUser);
+        String encryptedPassword = new BCryptPasswordEncoder().encode(data.getPassword());
+        User newUser = new User(data.getLogin(), encryptedPassword, data.getUserRole());
 
-    return ResponseEntity.ok(newUser);
+        this.userRepository.save(newUser);
 
-  }
+        return ResponseEntity.ok(newUser);
+    }
+
 }

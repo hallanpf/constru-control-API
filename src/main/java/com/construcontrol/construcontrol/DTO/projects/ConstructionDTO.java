@@ -1,8 +1,20 @@
 package com.construcontrol.construcontrol.DTO.projects;
 
-import com.construcontrol.construcontrol.shared.AddressDTO;
-import com.construcontrol.construcontrol.shared.DocumentsDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
-public record ConstructionDTO(String construction, String cnpj, Date startDate, Date endDate, double budget, double buildingLandArea, double buildingArea, double salesArea, int numberApartaments, AddressDTO address, DocumentsDTO documents) {
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+public class ConstructionDTO {
+    private long id;
+    private String construction;
+    private String cnpj;
+    private Date startDate;
+    private Date endDate;
+    private CompanyDTO company;
+//    private AddressDTO address;
 }

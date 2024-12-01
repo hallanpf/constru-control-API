@@ -1,5 +1,6 @@
 package com.construcontrol.construcontrol.DTO.users;
 
+import com.construcontrol.construcontrol.model.domain.users.enums.MaritialStatus;
 import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
 import com.construcontrol.construcontrol.DTO.projects.AddressDTO;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @NoArgsConstructor
-public class ManagerDTO {
+public class ClientDTO {
     private long id;
     private String name;
     private String cpf;
@@ -19,4 +20,5 @@ public class ManagerDTO {
     private String password;
 //    private AddressDTO address;
     private UserRole userRole;
+    private MaritialStatus maritalStatus;
 }

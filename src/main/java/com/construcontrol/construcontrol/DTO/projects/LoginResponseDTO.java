@@ -1,4 +1,12 @@
 package com.construcontrol.construcontrol.DTO.projects;
 
-public record LoginResponseDTO(String token) {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+public class LoginResponseDTO {
+    private String token;
 }

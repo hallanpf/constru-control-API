@@ -93,11 +93,11 @@ Para testar as rotas, siga estas instruções:
 - POST: /auth/login
 
 ### Clients:
-- GET: /clients
-- GET: /clients/{id}
-- POST: /clients
-- PATCH: /clients/{id}
-- DELETE: /clients/{id}
+- GET: /client
+- GET: /client/{id}
+- POST: /client
+- PATCH: /client/{id}
+- DELETE: /client/{id}
 
 ### Managers:
 - GET: /managers

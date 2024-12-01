@@ -81,7 +81,7 @@ Para testar as rotas, siga estas instruções:
         ![img](/src/main/java/com/construcontrol/construcontrol/img/bearer.png)
 
       
-- Ao testar a rota `/clients`, é necessário passar o corpo da requisição conforme o exemplo abaixo:
+- Ao testar a rota `/client`, é necessário passar o corpo da requisição conforme o exemplo abaixo:
 
     ```json
     {
@@ -97,9 +97,9 @@ Para testar as rotas, siga estas instruções:
 ## Endpoints
 
 - Clients:
-    - GET: /clients
-    - GET: /clients/{id}
-    - POST: /clients
+    - GET: /client
+    - GET: /client/{id}
+    - POST: /client
         - Exemplo Corpo de requisição:
             - Sem endereço:
               ```json
@@ -147,8 +147,8 @@ Para testar as rotas, siga estas instruções:
                     }
                   } 
 
-    - PATCH: /clients/{id}
-    - DELETE: /clients/{id}
+    - PATCH: /client/{id}
+    - DELETE: /client/{id}
 
 - Managers:
     - GET: /managers

@@ -1,7 +1,15 @@
 package com.construcontrol.construcontrol.DTO.projects;
 
-import com.construcontrol.construcontrol.shared.AddressDTO;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public record CompanyDTO(String company, String cnpj, AddressDTO address) {
-    // Quando consegui resolver a questão do relacionamento incluir 'ManagerDTO manager'
+@AllArgsConstructor
+@Data
+@NoArgsConstructor
+public class CompanyDTO {
+    private long id;
+    private String company;
+    private String cnpj;
+//    private AddressDTO address;
 }

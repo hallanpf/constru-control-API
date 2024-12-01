@@ -1,7 +1,7 @@
 package com.construcontrol.construcontrol.model.domain.users;
 
 import com.construcontrol.construcontrol.model.domain.users.enums.UserRole;
-import com.construcontrol.construcontrol.shared.Address;
+import com.construcontrol.construcontrol.model.domain.projects.Address;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,11 +39,7 @@ public class User implements UserDetails {
   @JoinColumn(name = "address_id", referencedColumnName = "id")
   protected Address address;
 
-
-  public User(String email, String password, UserRole userRole) {
-    this.email = email;
-    this.password = password;
-    this.userRole = userRole;
+  public User(String login, String encryptedPassword, UserRole userRole) {
   }
 
   @Override
