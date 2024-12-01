@@ -3,9 +3,7 @@ package com.construcontrol.construcontrol.model.domain.users.enums;
 public enum UserRole {
   GESTOR("GESTOR"),
 
-  CLIENTE("CLIENTE"),
-
-  CORRETOR("CORRETOR");
+  CLIENTE("CLIENTE");
 
   private final String role;
 
